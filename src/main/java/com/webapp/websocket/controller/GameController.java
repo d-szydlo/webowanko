@@ -8,6 +8,8 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
+import java.util.ArrayList;
+
 @Controller
 public class GameController {
 
@@ -20,7 +22,10 @@ public class GameController {
     @SendTo("/topic/public")
     public GameMessage sendMessage(@Payload GameMessage gameMessage) {
         GameMessage msg = shell.processMove(gameMessage.getPlayer(), gameMessage.getContent());
-        //tu jeszcze wywolanie removeStone
+        ArrayList<GameMessage> rem = shell.getRemoveMsg();
+        for (int i=0;i<rem.size();i++){
+            removeStone(rem.get(i));
+        }
         return msg;
     }
 
@@ -38,8 +43,8 @@ public class GameController {
         return msg;
     }
 
-    public void removeStone (String id){
-        template.convertAndSend("/topic/public", id);
+    public void removeStone (GameMessage msg){
+        template.convertAndSend("/topic/public", msg);
     }
 
 }

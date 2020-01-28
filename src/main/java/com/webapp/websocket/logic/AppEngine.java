@@ -223,8 +223,8 @@ public class AppEngine implements EngineInterface {
 	
 	/**
 	 *  Sprawdzanie skladu lancucha
-	 * @param X 
-	 * @param Y
+	 * @param X wspolrzedna X
+	 * @param Y wspolrzedna Y
 	 * @return lista z lancuchem
 	 */
 	public ArrayList<Integer> getDomkaChain(int X, int Y){
@@ -580,44 +580,14 @@ public class AppEngine implements EngineInterface {
 	public String getChanges(){
 		for (int i=0;i<boardSize;i++) {
 			for (int j=0;j<boardSize;j++) {
-				
-				if(i == 0 && j == 0) {
-				
-				}
-				if (previousBoard[i][j] == null ) {
-					if(currentBoard[i][j] != null ) {
-						changes += Integer.toString(i);
-						changes += " ";
-						changes += Integer.toString(j);
-						changes += " ";
-						changesCounter +=2;
-						
-						if (currentBoard[i][j].getColor() == Color.white) {
-							
-							changes += "white ";
-							changesCounter++;
-							
-						} 
-						else {
-							
-							changes += "black ";
-							changesCounter++;
-						} 
-					}
-				}
-				else {
-					if(currentBoard[i][j] == null) {
-						changes += Integer.toString(i);
-						changes += " ";
-						changes += Integer.toString(j);
-						changes += " ";
-						changes += "null ";
-						changesCounter +=3;
-					}
+				if(currentBoard[i][j] == null) {
+					changes += Integer.toString(i);
+					changes += " ";
+					changes += Integer.toString(j);
+					changes += " ";
 				}
 			}
 		}
-		
 		return this.changes;
 	}
 

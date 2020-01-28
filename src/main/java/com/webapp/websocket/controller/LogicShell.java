@@ -7,6 +7,8 @@ import com.webapp.websocket.exceptions.SuicidalMoveException;
 import com.webapp.websocket.logic.AppEngine;
 import com.webapp.websocket.model.GameMessage;
 
+import java.util.ArrayList;
+
 import static com.webapp.websocket.model.GameMessage.MessageType.*;
 
 public class LogicShell {
@@ -52,6 +54,37 @@ public class LogicShell {
             }
         }
         return msg;
+    }
+
+    public ArrayList<GameMessage> getRemoveMsg(){
+        ArrayList<GameMessage> rem = new ArrayList<>();
+        GameMessage msg = new GameMessage();
+        msg.setType(REMOVE);
+        String chng = engine.getChanges();
+        int i=0;
+        StringBuilder builder = new StringBuilder();
+        int var = 0;
+        while (i<chng.length()){
+            while (chng.charAt(i) != ' '){
+                builder.append(chng.charAt(i));
+                i++;
+            }
+            String helper = builder.toString();
+            var = Integer.parseInt(helper);
+            builder.setLength(0);
+            i++;
+            while (chng.charAt(i) != ' '){
+                builder.append(chng.charAt(i));
+                i++;
+            }
+            helper = builder.toString();
+            var += Integer.parseInt(helper)*19;
+            i++;
+            msg.setContent(Integer.toString(var));
+            rem.add(msg);
+        }
+        engine.resetChanges();
+        return rem;
     }
 
 }
