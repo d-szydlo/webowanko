@@ -7,7 +7,6 @@ public class GameMessage {
 
     public enum MessageType {
         MOVE,
-        JOIN,
         ERROR,
         REMOVE
     }

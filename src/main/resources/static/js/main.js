@@ -23,7 +23,7 @@ function onConnected() {
     stompClient.subscribe('/topic/public', onMessageReceived);
     stompClient.subscribe('/topic/color', gameOn);
     stompClient.send("/app/game.addUser", {},
-        JSON.stringify({sender: username, type: 'JOIN'})
+        JSON.stringify({player: username})
     )
 }
 
@@ -43,8 +43,13 @@ function sendMessage(slot) {
 
 function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
-    document.getElementById(message.content).style.background = message.color;
-    //alert(message.content + " " + message.color);
+    if (message.type === 'MOVE'){
+        document.getElementById(message.content).style.background = message.player;
+    } else if (message.type === 'ERROR' && message.player === username){
+        alert(message.content);
+    } else if (message.type === 'REMOVE'){
+        document.getElementById(message.content).style.background = bgc;
+    }
 }
 
 function gameOn(payload) {
@@ -54,13 +59,7 @@ function gameOn(payload) {
     }
 }
 
-function remove(payload) {
-    var field = payload.body;
-    document.getElementById(field).style.background = bgc;
-}
-
-
 $(".dzban").click(function(){
-    var slot = $(this).attr('id');
-    sendMessage(slot);
+    var siup = $(this).attr('id');
+    sendMessage(siup);
 });
