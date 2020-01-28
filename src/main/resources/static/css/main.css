@@ -4,12 +4,14 @@ body{
 }
 
 #board{
-    width: 860px;
+    width: 1300px;
     overflow: auto;
     margin: 20px auto;
-    background-image: url("plansza1919.png");
-    background-repeat: no-repeat;
-    background-size: 860px 860px;
+    background: #8a6a30;
+    border:  20px solid #221408;
+   /* background-image: url("plansza1919.png");*/
+   /* background-repeat: no-repeat;*/
+    /* background-size: 860px 860px;*/
     padding-bottom: 10px;
     border-radius: 5px;
 }
