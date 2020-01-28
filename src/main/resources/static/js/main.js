@@ -8,7 +8,7 @@ var username = "";
 var bgc = "#c29861";
 
 function drawBoard(size) {
-    for(i = 0; i<size; i++){
+    for(var i = 0; i<size; i++){
         $("#slots").append('<li class="dzban"id='+i+'></li>')
     }
 }
