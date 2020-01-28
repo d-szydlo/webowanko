@@ -2,13 +2,14 @@ package com.webapp.websocket.model;
 
 public class GameMessage {
     private String content;
-    private String sender;
+    private String player;
     private MessageType type;
 
     public enum MessageType {
-        CHAT,
+        MOVE,
         JOIN,
-        LEAVE
+        ERROR,
+        REMOVE
     }
 
     public MessageType getType() {
@@ -27,11 +28,11 @@ public class GameMessage {
         this.content = content;
     }
 
-    public String getSender() {
-        return sender;
+    public String getPlayer() {
+        return player;
     }
 
-    public void setSender(String sender) {
-        this.sender = sender;
+    public void setPlayer(String player) {
+        this.player = player;
     }
 }

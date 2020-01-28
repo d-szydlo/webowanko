@@ -11,14 +11,17 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class GameController {
 
-    int playerCounter = 0;
+    private int playerCounter = 0;
+    private LogicShell shell;
     @Autowired
     private SimpMessagingTemplate template;
 
     @MessageMapping("/game.sendMessage")
     @SendTo("/topic/public")
     public GameMessage sendMessage(@Payload GameMessage gameMessage) {
-        return gameMessage;
+        GameMessage msg = shell.processMove(gameMessage.getPlayer(), gameMessage.getContent());
+        //tu jeszcze wywolanie removeStone
+        return msg;
     }
 
     @MessageMapping("/game.addPlayer")
@@ -26,16 +29,17 @@ public class GameController {
     public GameMessage addUser() {
         GameMessage msg = new GameMessage();
         if (playerCounter == 0){
-            msg.setSender("black");
+            shell = new LogicShell();
+            msg.setPlayer("black");
         } else {
-            msg.setSender("white");
+            msg.setPlayer("white");
         }
         playerCounter++;
         return msg;
     }
 
     public void removeStone (String id){
-        template.convertAndSend("/topic/remove", id);
+        template.convertAndSend("/topic/public", id);
     }
 
 }
