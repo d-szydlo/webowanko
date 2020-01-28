@@ -32,7 +32,7 @@ public class LogicShell {
             int joint = Integer.parseInt(coords);
             int X = joint%19;
             joint -= X;
-            int Y = joint/10;
+            int Y = joint/19;
             try {
                 engine.handleMove(X,Y);
             } catch (KoRuleViolatedException e) {
