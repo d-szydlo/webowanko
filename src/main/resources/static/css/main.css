@@ -1,1 +1,37 @@
-/*TODO stronka*/
+body{
+    background: #212121;
+    color: #666;
+}
+
+#board{
+    width: 860px;
+    overflow: auto;
+    margin: 20px auto;
+    background-image: url("plansza1919.png");
+    background-repeat: no-repeat;
+    background-size: 860px 860px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+}
+#message{
+    background: #333;
+    color: #fff;
+}
+#slots li{
+    float: left;
+    margin: 15px;
+    height: 35px;
+    width: 35px;
+    background: #c29861;
+    color: #ccc;
+    list-style: none;
+    text-align: center;
+    border-radius: 50px;
+}
+#slots li:hover {
+    cursor: pointer;
+    background: #575757;
+    opacity: 0.5;
+}
+
+
