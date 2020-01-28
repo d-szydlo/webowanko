@@ -16,15 +16,13 @@ function drawBoard(size) {
 function connect() {
     var socket = new SockJS('/ws');
     stompClient = Stomp.over(socket);
-
     stompClient.connect({}, onConnected, onError);
 }
 
 function onConnected() {
     stompClient.subscribe('/topic/public', onMessageReceived);
     stompClient.subscribe('/topic/color', gameOn);
-    stompClient.send("/app/game.addUser",
-        {},
+    stompClient.send("/app/game.addUser", {},
         JSON.stringify({sender: username, type: 'JOIN'})
     )
 }
@@ -33,12 +31,12 @@ function onError(error) { alert("Something went wrong"); }
 
 function sendMessage(slot) {
     if(slot && stompClient) {
-        var chatMessage = {
+        var gameMessage = {
             player: username,
             content: slot,
             type: 'MOVE'
         };
-        stompClient.send("/app/game.sendMessage", {}, JSON.stringify(chatMessage));
+        stompClient.send("/app/game.sendMessage", {}, JSON.stringify(gameMessage));
     }
 }
 
