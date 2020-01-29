@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
 
+import static com.webapp.websocket.model.GameMessage.MessageType.REMOVE;
+
 @Controller
 public class GameController {
 
@@ -30,6 +32,7 @@ public class GameController {
             ArrayList<GameMessage> rem = shell.getRemoveMsg();
             for (int i=0;i<rem.size();i++){
                 removeStone(rem.get(i));
+
             }
 
         }
@@ -58,6 +61,7 @@ public class GameController {
     public void removeStone (GameMessage msg){
         template.convertAndSend("/topic/public", msg);
         System.out.println("usuwansko");
+        System.out.println(msg.getType());
     }
 
 }

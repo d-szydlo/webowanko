@@ -5,7 +5,7 @@ $( document ).ready(function() {
 
 var stompClient = null;
 var username = "";
-var bgc = "#c29861";
+var bgc = "#c2a972";
 
 function drawBoard(size) {
     for(var i = 0; i<size; i++){
@@ -45,10 +45,14 @@ function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
     if (message.type === 'MOVE'){
         document.getElementById(message.content).style.background = message.player;
+        document.getElementById(message.content).style.opacity = "1.0";
+
     } else if (message.type === 'ERROR' && message.player === username){
         alert(message.content);
     } else if (message.type === 'REMOVE'){
         document.getElementById(message.content).style.background = bgc;
+
+
 
     }
 }
