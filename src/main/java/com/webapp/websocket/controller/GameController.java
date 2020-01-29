@@ -39,6 +39,7 @@ public class GameController {
                 msg = new GameMessage();
                 msg.setPlayer(gameMessage.getPlayer());
                 msg.setType(gameMessage.getType());
+                msg.setContent(shell.processButton(gameMessage.getType()));
             }
         }
         else msg = null;

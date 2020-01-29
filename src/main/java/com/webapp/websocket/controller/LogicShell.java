@@ -92,7 +92,15 @@ public class LogicShell {
 
     public String processButton(GameMessage.MessageType type){
         String content = "";
-
+        if (type == PASS){
+            engine.handleButtons("");
+            if (engine.getPassCounter() == 2){
+                content = engine.getFinalScore();
+            } else {
+                content = currentPlayer + "spasowal";
+            }
+            changePlayer();
+        } else content = "";
         return content;
     }
 
