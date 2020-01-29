@@ -5,7 +5,7 @@ $( document ).ready(function() {
 
 var stompClient = null;
 var username = "";
-var bgc = "#c2a972";
+var bgc = "#575757";
 
 function drawBoard(size) {
     for(var i = 0; i<size; i++){
@@ -60,12 +60,20 @@ function onMessageReceived(payload) {
     } else if (message.type === 'ERROR' && message.player === username){
         alert(message.content);
     } else if (message.type === 'REMOVE'){
+        document.getElementById(message.content).style.cursor = "pointer";
         document.getElementById(message.content).style.background = bgc;
+        document.getElementById(message.content).style.opacity = "0.5";
     } else if (message.type === 'RESIGN'){
         if (message.player === username){
             alert("Twoje jest przegranko");
+            stompClient.send("/game.reload", {},{});
+            location.reload();
+
         } else {
-            alert("Przeciwnik uznal, ze jestes za dobry/a i sie poddal")
+            alert("Przeciwnik uznal, ze jestes za dobry/a i sie poddal");
+            stompClient.send("/game.reload", {},{});
+            location.reload();
+
         }
     } else if (message.type === 'PASS'){
         alert(message.content);

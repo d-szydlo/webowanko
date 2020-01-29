@@ -4,21 +4,24 @@ body{
 
 }
 .button {
-    background-color: #645daf;
+    background-color: #221408;
     border: none;
-    color: #ff72e6;
+    color: #ffffff;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
+    font-size: 20px;
+    margin: 4px 230px;
     cursor: pointer;
+    border-radius: 30px;
 }
 #buttons{
-    width: 500px;
-    margin-right: 600px;
-   // background: #221408;
+    width: 1300px;
+    overflow: auto;
+    margin: 15px auto;
+
+;
 
 
 }

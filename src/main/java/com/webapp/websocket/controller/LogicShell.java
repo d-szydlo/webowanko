@@ -111,4 +111,8 @@ public class LogicShell {
             currentPlayer = "black";
     }
 
+    public void reloadEngine(){
+        engine.reloadEngine();
+    }
+
 }

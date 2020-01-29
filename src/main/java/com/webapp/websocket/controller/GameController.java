@@ -59,6 +59,14 @@ public class GameController {
         playerCounter++;
         return msg;
     }
+    @MessageMapping("/game.reload")
+    public void reloadEngine(){
+        shell.reloadEngine();
+        ArrayList<GameMessage> rem = shell.getRemoveMsg();
+        for (int i=0;i<rem.size();i++){
+            removeStone(rem.get(i));
+        }
+    }
 
     public void removeStone (GameMessage msg){
         template.convertAndSend("/topic/public", msg);

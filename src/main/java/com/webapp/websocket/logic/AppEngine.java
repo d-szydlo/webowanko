@@ -643,5 +643,16 @@ public class AppEngine implements EngineInterface {
 	public int getPassCounter() {
 		return passCounter;
 	}
+
+	public void reloadEngine(){
+		this.currentBoard = new Stone[boardSize][boardSize];
+		this.koBoard = new Stone[boardSize][boardSize];
+		this.previousBoard = new Stone[boardSize][boardSize];
+		blackTurn = true;
+		passCounter = 0;
+		turnCounter = 0;
+
+
+	}
 	
 }
