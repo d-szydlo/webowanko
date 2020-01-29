@@ -90,6 +90,12 @@ public class LogicShell {
         return rem;
     }
 
+    public String processButton(GameMessage.MessageType type){
+        String content = "";
+
+        return content;
+    }
+
     private void changePlayer(){
         if(currentPlayer.equals("black"))
             currentPlayer = "white";

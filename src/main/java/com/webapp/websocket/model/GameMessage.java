@@ -8,7 +8,9 @@ public class GameMessage {
     public enum MessageType {
         MOVE,
         ERROR,
-        REMOVE
+        REMOVE,
+        PASS,
+        RESIGN
     }
 
     public MessageType getType() {
