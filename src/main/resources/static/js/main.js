@@ -51,9 +51,6 @@ function onMessageReceived(payload) {
         alert(message.content);
     } else if (message.type === 'REMOVE'){
         document.getElementById(message.content).style.background = bgc;
-
-
-
     }
 }
 

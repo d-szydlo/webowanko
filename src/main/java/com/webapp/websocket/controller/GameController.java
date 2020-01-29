@@ -32,15 +32,10 @@ public class GameController {
             ArrayList<GameMessage> rem = shell.getRemoveMsg();
             for (int i=0;i<rem.size();i++){
                 removeStone(rem.get(i));
-
             }
-
         }
-        else
-            msg = null;
-
-            return msg;
-
+        else msg = null;
+        return msg;
     }
 
     @MessageMapping("/game.addPlayer")
@@ -61,7 +56,7 @@ public class GameController {
     public void removeStone (GameMessage msg){
         template.convertAndSend("/topic/public", msg);
         System.out.println("usuwansko");
-        System.out.println(msg.getType());
+        System.out.println(msg.getContent());
     }
 
 }

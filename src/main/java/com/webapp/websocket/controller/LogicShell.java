@@ -60,20 +60,20 @@ public class LogicShell {
 
     public ArrayList<GameMessage> getRemoveMsg(){
         ArrayList<GameMessage> rem = new ArrayList<>();
-        GameMessage msg = new GameMessage();
-        msg.setType(REMOVE);
         String chng = engine.getChanges();
         int i=0;
         StringBuilder builder = new StringBuilder();
         int var = 0;
         while (i<chng.length()){
+            GameMessage msg = new GameMessage();
+            msg.setType(REMOVE);
             while (chng.charAt(i) != ' '){
                 builder.append(chng.charAt(i));
                 i++;
             }
             String helper = builder.toString();
             var = Integer.parseInt(helper);
-            builder.setLength(0);
+            builder = new StringBuilder();
             i++;
             while (chng.charAt(i) != ' '){
                 builder.append(chng.charAt(i));
@@ -82,11 +82,12 @@ public class LogicShell {
             helper = builder.toString();
             var += Integer.parseInt(helper)*19;
             i++;
+            builder = new StringBuilder();
+            System.out.println(var);
             msg.setContent(Integer.toString(var));
             rem.add(msg);
         }
         engine.resetChanges();
-        System.out.println(rem.size());
         return rem;
     }
 
@@ -95,7 +96,6 @@ public class LogicShell {
             currentPlayer = "white";
         else
             currentPlayer = "black";
-
     }
 
 }
