@@ -23,7 +23,6 @@ public class LogicShell {
 
     public GameMessage processMove(String player, String coords){
         GameMessage msg = new GameMessage();
-        System.out.println(player);
         msg.setPlayer(player);
         msg.setType(MOVE);
         if (!player.equals(currentPlayer)){
@@ -113,6 +112,10 @@ public class LogicShell {
 
     public void reloadEngine(){
         engine.reloadEngine();
+    }
+
+    public String getCurrentPlayer() {
+        return currentPlayer;
     }
 
 }

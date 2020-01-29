@@ -28,7 +28,13 @@ public class GameController {
     public GameMessage sendMessage(@Payload GameMessage gameMessage) {
         GameMessage msg;
         if(playerCounter%2 == 0){
-            if (gameMessage.getType() == MOVE){
+            if (!gameMessage.getPlayer().equals(shell.getCurrentPlayer())){
+                msg = new GameMessage();
+                msg.setPlayer(gameMessage.getPlayer());
+                msg.setType(ERROR);
+                msg.setContent("Nie twoj ruch");
+            }
+            else if (gameMessage.getType() == MOVE){
                 msg = shell.processMove(gameMessage.getPlayer(), gameMessage.getContent());
                 ArrayList<GameMessage> rem = shell.getRemoveMsg();
                 for (int i=0;i<rem.size();i++){
