@@ -1,18 +1,22 @@
 body{
     background: #212121;
     color: #666;
+
 }
 
 #board{
     width: 1300px;
     overflow: auto;
-    margin: 20px auto;
-    background: #8a6a30;
+    margin: 15px auto;
+    //background: #f2c679;
     border:  20px solid #221408;
-   /* background-image: url("plansza1919.png");*/
-   /* background-repeat: no-repeat;*/
-    /* background-size: 860px 860px;*/
+    background-image: url("plansza1919.png");
+    background-repeat: no-repeat;
+   // background-size: 1320px 1290px;
+    background-size: 1310px 1300px;
     padding-bottom: 10px;
+    padding-top: 15px;
+
     border-radius: 5px;
 }
 #message{
@@ -20,11 +24,14 @@ body{
     color: #fff;
 }
 #slots li{
+
     float: left;
     margin: 15px;
     height: 35px;
     width: 35px;
-    background: #c29861;
+
+    opacity: 0.0;
+    background: #c2a370;
     color: #ccc;
     list-style: none;
     text-align: center;
