@@ -38,7 +38,7 @@ public class AppEngine implements EngineInterface {
 	 * zmienna przechowująca informacje o turze danego gracza
 	 */
 	private boolean blackTurn;
-	
+
 	/**
 	 * licznik spasowan
 	 */
@@ -439,23 +439,11 @@ public class AppEngine implements EngineInterface {
 	 */
 	@Override
 	public void handleButtons(String button) {
-		if (button.equals("pass")) {
-			passCounter += 1;
-			finalScore += " Przeciwnik spasował \n";
-			changeTurn();
-			
-			if (passCounter == 2) {
-				setFinalScore();
-			}
-
-		} else if (button.equals("resign")) {
-			if(turnCounter%2 == 1){
-				finalScore = "black "+  getScore(Color.black);
-			}
-			else
-				finalScore = "white "+  getScore(Color.white);
+		passCounter += 1;
+		changeTurn();
+		if (passCounter == 2) {
+			setFinalScore();
 		}
-	
 	}
 	
 	/**
@@ -471,13 +459,13 @@ public class AppEngine implements EngineInterface {
 		if(blackPoints > whitePoints) {
 			
 			delta = blackPoints - whitePoints;
-					finalScore += "black " + delta;
+					finalScore += "Czarny " + delta;
 				
 		}
 		else if(blackPoints < whitePoints) {
 			
 			delta = whitePoints - blackPoints;
-			finalScore += "white " + delta;
+			finalScore += "Bialy " + delta;
 		}
 		else 
 			finalScore = "remis";
@@ -650,6 +638,10 @@ public class AppEngine implements EngineInterface {
 	public int getTurnCounter() {
 
 		return this.turnCounter;
+	}
+
+	public int getPassCounter() {
+		return passCounter;
 	}
 	
 }
