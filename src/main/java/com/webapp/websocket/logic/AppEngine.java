@@ -450,13 +450,10 @@ public class AppEngine implements EngineInterface {
 
 		} else if (button.equals("resign")) {
 			if(turnCounter%2 == 1){
-
 				finalScore = "black "+  getScore(Color.black);
-
 			}
 			else
 				finalScore = "white "+  getScore(Color.white);
-
 		}
 	
 	}
@@ -588,7 +585,6 @@ public class AppEngine implements EngineInterface {
 				}
 			}
 		}
-		System.out.println(changes);
 		return this.changes;
 	}
 

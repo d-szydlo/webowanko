@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
 
-import static com.webapp.websocket.model.GameMessage.MessageType.REMOVE;
+import static com.webapp.websocket.model.GameMessage.MessageType.*;
 
 @Controller
 public class GameController {
@@ -28,19 +28,21 @@ public class GameController {
     public GameMessage sendMessage(@Payload GameMessage gameMessage) {
         GameMessage msg;
         if(playerCounter%2 == 0){
-             msg = shell.processMove(gameMessage.getPlayer(), gameMessage.getContent());
-            ArrayList<GameMessage> rem = shell.getRemoveMsg();
-            for (int i=0;i<rem.size();i++){
-                removeStone(rem.get(i));
-
+            if (gameMessage.getType() == MOVE){
+                msg = shell.processMove(gameMessage.getPlayer(), gameMessage.getContent());
+                ArrayList<GameMessage> rem = shell.getRemoveMsg();
+                for (int i=0;i<rem.size();i++){
+                    removeStone(rem.get(i));
+                }
             }
-
+            else {
+                msg = new GameMessage();
+                msg.setPlayer(gameMessage.getPlayer());
+                msg.setType(gameMessage.getType());
+            }
         }
-        else
-            msg = null;
-
-            return msg;
-
+        else msg = null;
+        return msg;
     }
 
     @MessageMapping("/game.addPlayer")
@@ -57,11 +59,8 @@ public class GameController {
         return msg;
     }
 
-    //TODO tutaj sypie się usuwanie
     public void removeStone (GameMessage msg){
         template.convertAndSend("/topic/public", msg);
-        System.out.println("usuwansko");
-        System.out.println(msg.getType());
     }
 
 }

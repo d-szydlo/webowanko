@@ -29,12 +29,22 @@ function onConnected() {
 
 function onError(error) { alert("Something went wrong"); }
 
-function sendMessage(slot) {
+function sendMove(slot) {
     if(slot && stompClient) {
         var gameMessage = {
             player: username,
             content: slot,
             type: 'MOVE'
+        };
+        stompClient.send("/app/game.sendMessage", {}, JSON.stringify(gameMessage));
+    }
+}
+
+function sendButton(type) {
+    if(type && stompClient) {
+        var gameMessage = {
+            player: username,
+            type: type
         };
         stompClient.send("/app/game.sendMessage", {}, JSON.stringify(gameMessage));
     }
@@ -51,9 +61,14 @@ function onMessageReceived(payload) {
         alert(message.content);
     } else if (message.type === 'REMOVE'){
         document.getElementById(message.content).style.background = bgc;
-
-
-
+    } else if (message.type === 'RESIGN'){
+        if (message.player === username){
+            alert("Twoje jest przegranko");
+        } else {
+            alert("Przeciwnik uznal, ze jestes za dobry/a i sie poddal")
+        }
+    } else if (message.type === 'PASS'){
+        alert(message.content);
     }
 }
 
@@ -66,5 +81,5 @@ function gameOn(payload) {
 
 $(".dzban").click(function(){
     var siup = $(this).attr('id');
-    sendMessage(siup);
+    sendMove(siup);
 });
