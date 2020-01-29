@@ -23,6 +23,7 @@ public class LogicShell {
 
     public GameMessage processMove(String player, String coords){
         GameMessage msg = new GameMessage();
+        System.out.println(player);
         msg.setPlayer(player);
         msg.setType(MOVE);
         if (!player.equals(currentPlayer)){
@@ -50,11 +51,12 @@ public class LogicShell {
             }
             if (msg.getType().equals(MOVE)){
                 msg.setContent(coords);
-                currentPlayer = player;
+                changePlayer();
             }
         }
         return msg;
     }
+
 
     public ArrayList<GameMessage> getRemoveMsg(){
         ArrayList<GameMessage> rem = new ArrayList<>();
@@ -84,7 +86,16 @@ public class LogicShell {
             rem.add(msg);
         }
         engine.resetChanges();
+        System.out.println(rem.size());
         return rem;
+    }
+
+    private void changePlayer(){
+        if(currentPlayer.equals("black"))
+            currentPlayer = "white";
+        else
+            currentPlayer = "black";
+
     }
 
 }

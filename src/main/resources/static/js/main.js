@@ -22,7 +22,7 @@ function connect() {
 function onConnected() {
     stompClient.subscribe('/topic/public', onMessageReceived);
     stompClient.subscribe('/topic/color', gameOn);
-    stompClient.send("/app/game.addUser", {},
+    stompClient.send("/app/game.addPlayer", {},
         JSON.stringify({player: username})
     )
 }
@@ -49,6 +49,7 @@ function onMessageReceived(payload) {
         alert(message.content);
     } else if (message.type === 'REMOVE'){
         document.getElementById(message.content).style.background = bgc;
+
     }
 }
 
