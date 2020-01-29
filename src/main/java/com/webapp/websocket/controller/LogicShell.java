@@ -83,7 +83,6 @@ public class LogicShell {
             var += Integer.parseInt(helper)*19;
             i++;
             builder = new StringBuilder();
-            System.out.println(var);
             msg.setContent(Integer.toString(var));
             rem.add(msg);
         }

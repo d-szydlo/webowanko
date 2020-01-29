@@ -52,11 +52,8 @@ public class GameController {
         return msg;
     }
 
-    //TODO tutaj sypie się usuwanie
     public void removeStone (GameMessage msg){
         template.convertAndSend("/topic/public", msg);
-        System.out.println("usuwansko");
-        System.out.println(msg.getContent());
     }
 
 }

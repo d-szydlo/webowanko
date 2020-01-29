@@ -588,7 +588,6 @@ public class AppEngine implements EngineInterface {
 				}
 			}
 		}
-		System.out.println(changes);
 		return this.changes;
 	}
 
