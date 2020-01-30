@@ -5,7 +5,7 @@ $( document ).ready(function() {
 
 var stompClient = null;
 var username = "";
-var bgc = "#575757";
+var bgc = "#c2a370";
 
 function drawBoard(size) {
     for(var i = 0; i<size; i++){
@@ -60,9 +60,8 @@ function onMessageReceived(payload) {
     } else if (message.type === 'ERROR' && message.player === username){
         alert(message.content);
     } else if (message.type === 'REMOVE'){
-        document.getElementById(message.content).style.cursor = "pointer";
-        document.getElementById(message.content).style.background = bgc;
-        document.getElementById(message.content).style.opacity = "0.5";
+        document.getElementById(message.content).style.backgroundColor = "transparent";
+        document.getElementById(message.content).style.opacity = "0.0 !important";
     } else if (message.type === 'RESIGN'){
         if (message.player === username){
             alert("Twoje jest przegranko");
